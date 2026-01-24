@@ -1,0 +1,18 @@
+{
+  "manifest_version": "1.3",
+  "package_name": "com.Example.Package",
+  "app_name": "APP NAME",
+  "app_path": "APP PATH",
+  "generated_at": "YYYY-MM-DDTHH:MM:SS.MSZ",
+  "versions": [
+    {
+      "version": "1.0.CL",
+      "version_number": CL,
+      "version_code": VERSION_CODE,
+      "build_date": "YYYY-MM-DD HH:MM:SS",
+      "apk_url": "APK URL",
+      "obb_url": "OBB URL",
+      "flags": "REPLACE WITH ARGUMENTS"
+    }
+  ]
+}

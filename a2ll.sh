@@ -3,6 +3,7 @@ export PATH="$PATH:$HOME/.local/bin"
 
 install_dependencies() {
     DEBIAN_FRONTEND=noninteractive apt-get update
+    DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confold" upgrade 
     DEBIAN_FRONTEND=noninteractive apt-get install -y -o Dpkg::Options::="--force-confold" android-tools python git unzip aapt apksigner jq termux-api dialog
     python -m pip install pipx
     python -m pipx install a2_legacy_launcher
@@ -34,12 +35,12 @@ if [ -z "$VERSIONS" ]; then
     exit 1
 fi
 
-OPTIONS=()
+OPTIONS=("-rm" "Uninstall All" "off")
 for VER in $VERSIONS; do
     OPTIONS+=("$VER" "" "off")
 done
 
-SELECTION_STR=$(dialog --stdout --checklist "Select Versions to Install" 0 0 0 "${OPTIONS[@]}")
+SELECTION_STR=$(dialog --stdout --checklist "Select Versions" 0 0 0 "${OPTIONS[@]}")
 
 if [ -z "$SELECTION_STR" ]; then
     echo "Selection cancelled."
@@ -54,5 +55,5 @@ if [ -z "$SELECTED_VERSIONS" ]; then
 fi
 
 for VER in $SELECTED_VERSIONS; do
-    a2ll "$VER"
+    a2ll $VER
 done
