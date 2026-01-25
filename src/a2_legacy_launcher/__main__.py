@@ -152,15 +152,14 @@ def find_version_in_manifest(manifest, identifier):
 
 def fetch_manifest(config):
     url = config.get('manifest_url')
-    if not url: print_error(f"Manifest URL not found in {CONFIG_FILE}"); return {}
+    if not url or url == '(Manifest URL Here)': return {}
     try:
-        print_info("Fetching manifest...")
         r = requests.get(url, timeout=10); r.raise_for_status()
         m = r.json(); mv = m.get('manifest_version')
         rv = ".".join(__version__.split(".")[:2])
         if mv != rv: print(Fore.YELLOW + f"Incompatible Manifest: {mv}, Launcher: {rv}")
         return m
-    except Exception as e: print_error(f"Failed to download manifest: {e}"); return {}
+    except Exception: return {}
 
 def get_launcher_pkgs(device_id, base_package):
     out = run_command([ADB_PATH, "-s", device_id, "shell", "pm", "list", "packages"], True)
@@ -224,7 +223,7 @@ def check_for_updates():
         current_version = parse_version(__version__)
         latest_version = parse_version(latest_version_str)
         if latest_version > current_version:
-            print(Fore.YELLOW + f"\n[UPDATE] A new version ({latest_version_str}) is available!")
+            print(Fore.YELLOW + f"Update: A new version ({latest_version_str}) is available!")
             run_update()
     except Exception:
         run_update()
@@ -754,6 +753,9 @@ def a2ll():
     config = load_config()
     manifest = fetch_manifest(config)
     
+    if not manifest:
+        print(Fore.YELLOW + f"Warning: No manifest configured at {CONFIG_FILE} Automatic download and configuration is unavailable.")
+
     BASE_PACKAGE = manifest.get('package_name', 'com.example.app')
     APP_NAME = manifest.get('app_name', 'App')
     APP_PATH = manifest.get('app_path', f'{APP_NAME}/{APP_NAME}')
@@ -772,6 +774,8 @@ def a2ll():
         print_error("Cannot specify a version to download and an APK file at the same time.", exit_code=1)
 
     if args.download:
+        if not manifest:
+            print_error("A manifest is required to use the download argument. Please configure manifest_url in "+CONFIG_FILE)
         version_data = find_version_in_manifest(manifest, args.download)
         if not version_data:
             print_error(f"Version '{args.download}' not found in the manifest.")

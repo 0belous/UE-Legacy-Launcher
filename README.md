@@ -30,11 +30,9 @@ An integrated version manager/downgrader for Oculus VR games built with Unreal E
 
    `pipx install a2-legacy-launcher`
 
-5. Run Legacy Launcher
+5. Install complete
 
-   Configure a manifest in 
-   
-   **Note that some versions can take up to 5 attempts to launch correctly**
+   You have installed legacy launcher. Edit the config file at `%USERPROFILE%/.a2-legacy-launcher/config.yml` to provide a manifest, or manually use the arguments as listed in the usage section below.
 
 </details>
 
@@ -61,11 +59,9 @@ An integrated version manager/downgrader for Oculus VR games built with Unreal E
 
    `pipx install a2-legacy-launcher`
 
-5. Run Legacy Launcher
+5. Install complete
 
-   Check `a2ll -ls` for available versions.
-
-   **Note that some versions can take up to 5 attempts to launch correctly**
+   You have installed legacy launcher. Edit the config file at `~/.a2-legacy-launcher/config.yml` to provide a manifest, or manually use the arguments as listed in the usage section below.
 
 </details>
 
@@ -103,11 +99,9 @@ An integrated version manager/downgrader for Oculus VR games built with Unreal E
 
    `pipx install a2-legacy-launcher`
 
-7. Run Legacy Launcher
+7. Install complete
 
-   Check `a2ll -ls` for available versions.
-
-   **Note that some versions can take up to 5 attempts to launch correctly**
+   You have installed legacy launcher. Edit the config file at `~/.a2-legacy-launcher/config.yml` to provide a manifest, or manually use the arguments as listed in the usage section below.
 
 </details>
 
@@ -153,10 +147,10 @@ options:
   -v, --version         show program's version number and exit
   -a APK, --apk APK     Path/URL to an APK file
   -o OBB, --obb OBB     Path/URL to an OBB file
-  -i INI, --ini INI     Path/URL/Preset for Engine.ini
-                        Presets: Engine.ini, EngineVegas.ini, Engine4v4.ini, EngineNetworked.ini, EnginePlayerstart.ini
+  -i INI, --ini INI     Path/URL for Engine.ini
+  -m MAP, --map MAP     What map to load in format "Label|Path/To/Map"
   -c COMMANDLINE, --commandline COMMANDLINE
-                        Launch arguments for A2
+                        Launch arguments for UE
   -so SO, --so SO       Inject a custom .so file
   -rn, --rename         Rename the package for parallel installs
   -p PATCH, --patch PATCH
@@ -189,14 +183,12 @@ options:
 
 ### Config:
 
-The config.yml file located at `%USERPROFILE%/.a2-legacy-launcher/config.yml` currently has these settings:
+The config.yml file located at `~/.a2-legacy-launcher/config.yml` has these settings by default:
 
 ```yml
 autoupdate: true
 manifest_url: (Manifest URL Here)
 ```
-
-Auto update defaults to true so the script will update itself using update.bat or update.sh
 
 Specifying a manifest allows the program to automatically select the arguments to install a desired version. See the example.json for how to format your own manifest.
 
