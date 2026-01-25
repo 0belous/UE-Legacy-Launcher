@@ -1,6 +1,6 @@
-# Orion Drift Legacy Launcher
+# UE Legacy Launcher
 
-Run old versions of Orion Drift
+An integrated version manager/downgrader for Oculus VR games built with Unreal Engine.
 
 [Repo Mirror](https://git.obelous.dev/obelous/A2-Legacy-Launcher)
 
@@ -32,15 +32,7 @@ Run old versions of Orion Drift
 
 5. Run Legacy Launcher
 
-   Check `a2ll -ls` or [the archive](https://dl.obelous.dev/public/A2-archive/) for available versions.
-   
-   ```
-   These all install the same version:
-   2025-02-01
-   a2ll 1.0.25889
-   a2ll 25889
-   a2ll 41924491
-   ```
+   Configure a manifest in 
    
    **Note that some versions can take up to 5 attempts to launch correctly**
 
@@ -71,15 +63,7 @@ Run old versions of Orion Drift
 
 5. Run Legacy Launcher
 
-   Check `a2ll -ls` or [the archive](https://dl.obelous.dev/public/A2-archive/) for available versions.
-   
-   ```
-   These all install the same version:
-   2025-02-01
-   a2ll 1.0.25889
-   a2ll 25889
-   a2ll 41924491
-   ```
+   Check `a2ll -ls` for available versions.
 
    **Note that some versions can take up to 5 attempts to launch correctly**
 
@@ -121,15 +105,7 @@ Run old versions of Orion Drift
 
 7. Run Legacy Launcher
 
-   Check `a2ll -ls` or [the archive](https://dl.obelous.dev/public/A2-archive/) for available versions.
-   
-   ```
-   These all install the same version:
-   2025-02-01
-   a2ll 1.0.25889
-   a2ll 25889
-   a2ll 41924491
-   ```
+   Check `a2ll -ls` for available versions.
 
    **Note that some versions can take up to 5 attempts to launch correctly**
 
@@ -167,7 +143,7 @@ Run old versions of Orion Drift
 ## Usage
 
 ```
-A2 Legacy Launcher 1.2.0 by Obelous
+UE Legacy Launcher
 
 positional arguments:
   download              Build version to download and install
@@ -201,17 +177,15 @@ options:
 
 - `--clearcache` When providing a URL to the APK OBB or INI argument the script downloads and caches the file, to free up storage and delete cached downloads run the script with this argument.
 
-- `--skipdecompile` When iterating on a single version you may wish to skip the decopilation step to save time by using the previously decompiled files, this also allows for manual modification of game files.
+- `--skipdecompile` When iterating on a single version you may wish to skip the decopilation step to save time by using the previously decompiled files, this also allows for manual modification of game files in the temp/decompiled folder.
 
 - `--rename` This renames the package to com.LegacyLauncher.A2 to allow for multiple versions to be installed at once, but it must be used in conjunction with `-c="-useinsecure"` on a version where this argument exists.
 
-   > If a renamed version is installed the `--log` argument pulls the logs of the last version to that ran.
+   > If a renamed version is installed the `--log` argument pulls the logs of the last version to run.
 
-- `--commandline` Various features can be unlocked through the use of commandline options, for example: `-c="-loadreplay=../../../A2/Content/Replays/Quests/1DE99EFE4BF8C9948F487DA231824A75.a2replay` or `-c="-nullrhi"`
+- `--commandline` Various features can be unlocked through the use of commandline options, for example: `-c="-nullrhi"`
 
-- `--ini` Supports local path, url and these presets `-i Engine.ini`, `-i EngineVegas.ini`, `-i Engine4V4.ini`, `-i EngineNetworked.ini` however nearly all builds use Engine.ini
-
-   > --ini is unique because it can be ran on its own without rebuilding or reinstalling to almost instantly swap out an ini file
+- `--ini` is unique because it can be ran on its own without rebuilding or reinstalling to almost instantly swap out an ini file
 
 ### Config:
 
@@ -219,12 +193,11 @@ The config.yml file located at `%USERPROFILE%/.a2-legacy-launcher/config.yml` cu
 
 ```yml
 autoupdate: true
-manifest_url: https://dl.obelous.dev/api/raw/?path=/public/A2-archive/manifest.json
+manifest_url: (Manifest URL Here)
 ```
+
 Auto update defaults to true so the script will update itself using update.bat or update.sh
 
-The default manifest points to my APK archive, should you want to intergrate your own archive (further than manually using -a and -o) create a manifest like this: https://dl.obelous.dev/public/A2-archive/manifest.json and replace the url in the config.
+Specifying a manifest allows the program to automatically select the arguments to install a desired version. See the example.json for how to format your own manifest.
 
 <hr>
-
-This product is not affiliated with Another Axiom Inc. or its videogames Gorilla Tag and Orion Drift and is not endorsed or otherwise sponsored by Another Axiom.
