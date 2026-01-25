@@ -90,10 +90,12 @@ An integrated version manager/downgrader for Oculus VR games built with Unreal E
 
 5. Add java to PATH
 
-   `sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk`
-   `echo 'export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"' >> ~/.zshrc`
-   `echo 'export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"' >> ~/.zshrc`
-   `source ~/.zshrc`
+   ```
+   sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+   echo 'export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"' >> ~/.zshrc
+   echo 'export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"' >> ~/.zshrc
+   source ~/.zshrc
+   ```
 
 6. Install legacy launcher
 
@@ -125,7 +127,7 @@ An integrated version manager/downgrader for Oculus VR games built with Unreal E
 4. Run the helper script in termux
    
    ```
-   curl -L https://obelous.dev/a2ll.sh | bash
+   curl -L https://obelous.dev/uell.sh | bash
    ```
    
    I suggest opening this page on the quest browser and copy pasting this command.
@@ -167,7 +169,7 @@ options:
 
 #### Extra context:
 
-- `a2ll [Date/version code/CL/1.0.CL]` This automatically downloads a version and uses the correct flags to install it, renaming if possible.
+- `uell [Date/version code/CL/1.0.CL]` This automatically downloads a version and uses the correct flags to install it, renaming if possible.
 
 - `--clearcache` When providing a URL to the APK OBB or INI argument the script downloads and caches the file, to free up storage and delete cached downloads run the script with this argument.
 
