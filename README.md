@@ -175,7 +175,7 @@ options:
 
 - `--skipdecompile` When iterating on a single version you may wish to skip the decopilation step to save time by using the previously decompiled files, this also allows for manual modification of game files in the temp/decompiled folder.
 
-- `--rename` This renames the package to com.LegacyLauncher.A2 to allow for multiple versions to be installed at once, but it must be used in conjunction with `-c="-useinsecure"` on a version where this argument exists.
+- `--rename` This renames the package to allow for multiple versions to be installed at once.
 
    > If a renamed version is installed the `--log` argument pulls the logs of the last version to run.
 
