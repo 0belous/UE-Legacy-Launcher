@@ -214,7 +214,7 @@ def check_for_updates():
         else:
             return
     try:
-        pypi_url = "https://pypi.org/pypi/a2-legacy-launcher/json"
+        pypi_url = "https://pypi.org/pypi/a2-legacy-Launcher/json"
         response = requests.get(pypi_url, timeout=3)
         response.raise_for_status()
         latest_version_str = response.json()["info"]["version"] 
@@ -978,8 +978,11 @@ def a2ll():
 def main():
     try:
         a2ll()
-    finally:
-        check_for_updates()
+    except KeyboardInterrupt:
+        print(Fore.RED + "\n[!] Keyboard Interrupt.")
+        os._exit(0)
+
+    check_for_updates()
 
 if __name__ == "__main__":
     main()
