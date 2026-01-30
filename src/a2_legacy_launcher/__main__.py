@@ -747,10 +747,18 @@ def a2ll():
     parser.add_argument("--no-clearcache", action="store_false", dest="clearcache", help=argparse.SUPPRESS)
     parser.add_argument("-r", "--restore", action="store_true", dest="restore", default=None, help="Restore to the latest version")
     parser.add_argument("--no-restore", action="store_false", dest="restore", help=argparse.SUPPRESS)
+    parser.add_argument("--set-manifest", dest="set_manifest", help="Set the manifest URL in the config")
     args = parser.parse_args()
     print(Fore.LIGHTBLUE_EX + BANNER)
     
     config = load_config()
+    
+    if args.set_manifest:
+        config['manifest_url'] = args.set_manifest
+        with open(CONFIG_FILE, 'w') as f:
+            yaml.dump(config, f)
+        print_success(f"Manifest updated: {args.set_manifest}")
+        return
     manifest = fetch_manifest(config)
     
     if not manifest:

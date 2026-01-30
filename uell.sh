@@ -28,6 +28,14 @@ if ! command -v dialog &> /dev/null; then
     apt-get install -y dialog
 fi
 
+if grep -q "(Manifest URL Here)" "$CONFIG_FILE" || ! grep -q "manifest_url:" "$CONFIG_FILE"; then
+    MANIFEST_URL=$(dialog --stdout --inputbox "Please enter the Manifest URL:" 0 0)
+    if [ -n "$MANIFEST_URL" ]; then
+        a2ll --set-manifest "$MANIFEST_URL"
+        OUTPUT=$(a2ll -ls 2>&1)
+    fi
+fi
+
 VERSIONS=$(echo "$OUTPUT" | grep "Version:" | awk '{print $3}')
 
 if [ -z "$VERSIONS" ]; then
