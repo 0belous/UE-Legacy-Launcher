@@ -31,12 +31,12 @@ IS_TERMUX = "TERMUX_VERSION" in os.environ
 try:
     from importlib.resources import files
     jar_name = 'apktool-2.12.1-termux.jar' if IS_TERMUX else 'apktool_2.12.0.jar'
-    KEYSTORE_FILE_REF = files('a2_legacy_launcher').joinpath('legacyDev.keystore')
+    KEYSTORE_FILE_REF = files('a2_legacy_launcher').joinpath('LegacyDev.keystore')
     APKTOOL_JAR_REF = files('a2_legacy_launcher').joinpath(jar_name)
 except ImportError:
     from importlib.resources import path as resource_path
     jar_name = 'apktool-2.12.1-termux.jar' if IS_TERMUX else 'apktool_2.12.0.jar'
-    KEYSTORE_FILE_REF = resource_path('a2_legacy_launcher', 'legacyDev.keystore')
+    KEYSTORE_FILE_REF = resource_path('a2_legacy_launcher', 'LegacyDev.keystore')
     APKTOOL_JAR_REF = resource_path('a2_legacy_launcher', jar_name)
 
 with resources.as_file(KEYSTORE_FILE_REF) as keystore_path:
