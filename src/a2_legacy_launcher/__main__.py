@@ -25,7 +25,7 @@ import threading
 
 init(autoreset=True)
 
-__version__ = "1.3.3"
+__version__ = "1.3.4"
 IS_TERMUX = "TERMUX_VERSION" in os.environ
 
 try:
